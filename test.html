@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test</title>
+	<script src = "http://code.createjs.com/easeljs-0.8.1.min.js"></script>
+	<script type="text/javascript">
+		function init(){
+			var stage = new createjs.Stage("game");
+			var shape= new createjs.Shape();
+			shape.graphics.beginFill("red").drawRect(0,0,stage.canvas.width,stage.canvas.height);
+			stage.addChild(shape);
+			stage.update();
+
+			console.log(stage.canvas.width);
+		}
+	</script>
+	<style>
+	div{
+		height: 100%;
+		width: 100%;
+		margin: auto;
+	}
+
+</style>
+</head>
+<body onload="init()">
+	<div>
+		<canvas id="game" style="width: 100%;height: 100%;"></canvas>
+	</div>
+</body>
+</html>
