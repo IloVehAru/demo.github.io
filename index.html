@@ -2,21 +2,23 @@
 <html>
 <head>
 	<title>demo</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	<script src="./easeljs-0.8.2.min.js"></script>
 	<script src="./game_index.js"></script>
-	<style>
-		div{
-			-webkit-user-select: none;
-			height: 500px;
-			width: 300px;
+	<style type="text/css">
+		#gameCanvas{
+			width:100%;
+			height:100%;
+		}
+		#gameArea{
 			margin: auto;
 		}
 	</style>
 </head>
+
 <body onload="init()">
-	<div>
-		<canvas id="game" width="300" height="500"></canvas>
+	<div id="gameArea">
+		<canvas id="gameCanvas" width="300" height="500"></canvas>
+		<script type="text/javascript" src="./resize.js"></script>
 	</div>
 </body>
 </html>
