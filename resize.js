@@ -3,7 +3,7 @@ function resize(){
 	var canvas = document.getElementById("gameCanvas");
 	var div=document.getElementById("gameArea");
 	div.style.height=heights-20+"px";
-	div.style.width=(heights)*1080/1920+"px";
+	div.style.width=(heights-20)*300/500+"px";
 	canvas.style.width=div.style.width;
 	canvas.style.height=div.style.height;
 }
