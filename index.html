@@ -12,10 +12,12 @@
 		#gameArea{
 			margin: auto;
 		}
+		body { -webkit-touch-callout: none !important; }
+		div { -webkit-user-select: none !important; }
 	</style>
 </head>
 
-<body onload="init()">
+<body onload="init()" bgcolor="#ebebeb">
 	<div id="gameArea">
 		<canvas id="gameCanvas" width="1200" height="2000"></canvas>
 		<script type="text/javascript" src="./resize.js"></script>
