@@ -188,11 +188,12 @@ function initLevel(){
 			button[i][j].regX = 30;
 			button[i][j].regY = 30;
 			button[i][j].on("mouseover",inter);
-			button[i][j].on("mouseout",inter);
-			button[i][j].on("click",cut);
+			button[i][j].on("mouseout",inter);	
+			button[i][j].on("click",cut(event),{k:i,g:j});
 			level.addChild(button[i][j]);
 		}
 	}
+
 
 	var ret = new createjs.Shape();
 	ret.graphics.beginFill("red").drawRoundRect(120,400,60,60,10);
@@ -208,8 +209,8 @@ function initLevel(){
 
 	}
 
-	function cut(i,j){
-		switch(i*10+j){
+	function cut(event,data){
+		switch(data.k*10+data.g){
 			case 0:console.log("1");break;
 			case 10:console.log("2");break;
 			case 20:console.log("3");break;
