@@ -9,8 +9,8 @@ function init(){ //初始化基本部件
 	stage = new createjs.Stage("gameCanvas");
 	stage.enableMouseOver();
 	var backgroud = new createjs.Shape();
-	backgroud.graphics.beginFill(color_margin[Math.floor(Math.random()*3)]).drawRoundRect(0,0,300,500,10);
-	backgroud.graphics.beginFill("#ebebeb").drawRoundRect(10,20,280,460,10);
+	backgroud.graphics.beginFill(color_margin[Math.floor(Math.random()*3)]).drawRoundRect(0,0,1200,2000,40);
+	backgroud.graphics.beginFill("#ebebeb").drawRoundRect(40,80,1120,1840,40);
 	stage.addChild(backgroud);
 	initScence1();
 	stage.update();
@@ -35,29 +35,29 @@ function initScence1(){  //初始化第一界面
 	var title_str=["WHICH","COLOR","IS   ","MOST?"];
 	var icon=new createjs.Shape();
 	scence1.addChild(icon);
-	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(15+55*i,40,50,50,5);
-	title_1[i]=new createjs.Text(title_str[0].charAt(i),"50px impact","#FFFFFF");scence1.addChild(title_1[i]);
-	title_1[i].regX=title_1[i].getBounds().width/2;title_1[i].x=40+55*i,title_1[i].y=35;}
+	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(60+220*i,160,200,200,20);
+	title_1[i]=new createjs.Text(title_str[0].charAt(i),"200px impact","#FFFFFF");scence1.addChild(title_1[i]);
+	title_1[i].regX=title_1[i].getBounds().width/2;title_1[i].x=160+220*i,title_1[i].y=140;}
 
-	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(15+55*i,110,50,50,5);
-	title_2[i]=new createjs.Text(title_str[1].charAt(i),"50px impact","#FFFFFF");scence1.addChild(title_2[i]);
-	title_2[i].regX=title_2[i].getBounds().width/2;title_2[i].x=40+55*i,title_2[i].y=105;}
+	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(60+220*i,440,200,200,20);
+	title_2[i]=new createjs.Text(title_str[1].charAt(i),"200px impact","#FFFFFF");scence1.addChild(title_2[i]);
+	title_2[i].regX=title_2[i].getBounds().width/2;title_2[i].x=160+220*i,title_2[i].y=420;}
 
-	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(15+55*i,180,50,50,5);
-	title_3[i]=new createjs.Text(title_str[2].charAt(i),"50px impact","#FFFFFF");scence1.addChild(title_3[i]);
-	title_3[i].regX=title_3[i].getBounds().width/2;title_3[i].x=40+55*i,title_3[i].y=175;}
+	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(60+220*i,720,200,200,20);
+	title_3[i]=new createjs.Text(title_str[2].charAt(i),"200px impact","#FFFFFF");scence1.addChild(title_3[i]);
+	title_3[i].regX=title_3[i].getBounds().width/2;title_3[i].x=160+220*i,title_3[i].y=700;}
 
-	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(15+55*i,250,50,50,5);
-	title_4[i]=new createjs.Text(title_str[3].charAt(i),"50px impact","#FFFFFF");scence1.addChild(title_4[i]);
-	title_4[i].regX=title_4[i].getBounds().width/2;title_4[i].x=40+55*i,title_4[i].y=245;}
+	for(var i=0;i<5;i++){icon.graphics.beginFill(color[Math.floor(Math.random()*5)]).drawRoundRect(60+220*i,1000,200,200,20);
+	title_4[i]=new createjs.Text(title_str[3].charAt(i),"200px impact","#FFFFFF");scence1.addChild(title_4[i]);
+	title_4[i].regX=title_4[i].getBounds().width/2;title_4[i].x=160+220*i,title_4[i].y=980;}
 
 	
 	//初始化按钮1
 	button1 = new createjs.Shape();
-	button1.graphics.beginFill("#EB0000").drawRoundRect(0,0,70,70,10);
-	button1.x = 150;button1.y = 400;button1.regX = 35;button1.regY = 35;
+	button1.graphics.beginFill("#EB0000").drawRoundRect(0,0,280,280,40);
+	button1.x = 600;button1.y = 1600;button1.regX = 140;button1.regY = 140;
 
-	button1.graphics.beginFill("#FFFFFF").moveTo(18,15).lineTo(18,55).lineTo(55,35).closePath();
+	button1.graphics.beginFill("#FFFFFF").moveTo(72,60).lineTo(72,220).lineTo(220,140).closePath();
 
 	button1.addEventListener("mouseover",inter);
 	button1.addEventListener("mouseout",inter);
@@ -90,11 +90,11 @@ function initLevelSelector(){
 	for(var j=0;j<3;j++){
 		for(var i=0;i<3;i++){
 			button[i][j] = new createjs.Shape();
-			button[i][j].graphics.beginFill(color[3*j+i]).drawRoundRect(0,0,60,60,10);
-			button[i][j].x = 70+80*i;
-			button[i][j].y = 150+j*75;
-			button[i][j].regX = 30;
-			button[i][j].regY = 30;
+			button[i][j].graphics.beginFill(color[3*j+i]).drawRoundRect(0,0,240,240,40);
+			button[i][j].x = 280+320*i;
+			button[i][j].y = 600+j*300;
+			button[i][j].regX = 120;
+			button[i][j].regY = 120;
 			button[i][j].on("mouseover",inter);
 			button[i][j].on("mouseout",inter);	
 			button[i][j].on("click",cut,null,false,{k:i,g:j});
@@ -104,9 +104,9 @@ function initLevelSelector(){
 
 
 	var levelbackbutton = new createjs.Shape();
-	levelbackbutton.graphics.beginFill("red").drawRoundRect(0,0,50,50,10);
-	levelbackbutton.graphics.beginFill("#FFFFFF").moveTo(12,25).lineTo(35,12).lineTo(35,38).closePath();
-	levelbackbutton.x=150;levelbackbutton.y=400;levelbackbutton.regX=levelbackbutton.regY=25;
+	levelbackbutton.graphics.beginFill("red").drawRoundRect(0,0,200,200,40);
+	levelbackbutton.graphics.beginFill("#FFFFFF").moveTo(48,100).lineTo(140,48).lineTo(140,152).closePath();
+	levelbackbutton.x=600;levelbackbutton.y=1600;levelbackbutton.regX=levelbackbutton.regY=100;
 	levelbackbutton.on("click",bac);
 	levelbackbutton.on("mouseout",inter);
 	levelbackbutton.on("mouseover",inter);
@@ -142,8 +142,8 @@ function initLevel(level_count){
 
 	var backButton = new createjs.Shape();
 	level.addChild(backButton);
-	backButton.x=150;backButton.y=450;backButton.regX=backButton.regY=15;
-	backButton.graphics.beginFill("#FF0000").drawRoundRect(0,0,30,30,5);
+	backButton.x=600;backButton.y=1800;backButton.regX=backButton.regY=60;
+	backButton.graphics.beginFill("#FF0000").drawRoundRect(0,0,120,120,20);
 	backButton.on("click",function backFunction(){stage.removeChild(level);initLevelSelector();},null,true);
 	backButton.on("mouseover",inter);backButton.on("mouseout",inter);
 	initgamescence();
@@ -159,9 +159,9 @@ function initLevel(level_count){
 				var k=Math.floor(Math.random()*(level_count));
 				block[i][j]=new createjs.Shape();
 				gamescence.addChild(block[i][j]);
-				block[i][j].graphics.beginFill(color[k]).drawRoundRect(0,0,40,40,5);
-				block[i][j].x=50+j*50;block[i][j].y=70+i*50;
-				block[i][j].regX=block[i][j].regY=20;
+				block[i][j].graphics.beginFill(color[k]).drawRoundRect(0,0,160,160,20);
+				block[i][j].x=200+j*200;block[i][j].y=280+i*200;
+				block[i][j].regX=block[i][j].regY=80;
 				block[i][j].on("mouseover",inter);
 				block[i][j].on("mouseout",inter);	
 				block[i][j].on("click",ans,null,false,{count:k});
