@@ -5,8 +5,6 @@ var color = ["#FF4040","#7EC0EE","#FFFF00","#CC6600","#EEAD0E","#EE82EE","#B23AE
 var color_shadow=["#ec3d3d","#76b2db","#e3e305","#ac5600","#d29a0f","#d475d4","#a538db","#00e170","#005e2f"];
 var color_margin=["#008f78","#dc0062","#008449"];
 
-var gameend=false;
-
 function init(){ //初始化基本部件
 
 	createjs.Sound.initializeDefaultPlugins();
@@ -154,6 +152,7 @@ function initLevelSelector(){
 
 
 function initLevel(level_count){
+	var gameend=false;
 
 	var level = new createjs.Container();
 	stage.addChild(level);
@@ -278,7 +277,6 @@ function inter2(event){
 	// event.target.scaleX = (event.type == "mouseover") ? 1.2 : 1;
 	// event.target.scaleY = (event.type == "mouseover") ? 1.2 : 1;
 	if(event.type=="mouseover"){
-		
 		event.target.y+=20;
 		createjs.Sound.play("sound");
 	}
