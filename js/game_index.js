@@ -67,7 +67,7 @@ function initScence1(){  //初始化第一界面
 			
 			title[j][i].regX=title[j][i].getBounds().width/2;
 			title[j][i].x=200+200*i;
-			title[j][i].y=185+220*j;
+			title[j][i].y=190+220*j;
 			scence1.addChild(title[j][i]);
 		}
 	}
@@ -169,7 +169,7 @@ function initLevel(level_count){
 	var score_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
 	var round_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
 	round_title.x=700;round_title.y=90;
-	score_title.x=200;score_title.y=90;
+	score_title.x=160;score_title.y=90;
 	
 	level.addChild(round_title);
 	level.addChild(score_title);
