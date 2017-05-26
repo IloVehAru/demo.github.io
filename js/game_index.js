@@ -6,6 +6,8 @@ var color = ["#FF4040","#7EC0EE","#FFFF00","#CC6600","#EEAD0E","#EE82EE","#B23AE
 var color_shadow=["#ec3d3d","#76b2db","#e3e305","#ac5600","#d29a0f","#d475d4","#a538db","#00e170","#005e2f"];
 var color_margin=["#008f78","#dc0062","#008449"];
 
+var gameend=false;
+
 function init(){ //初始化基本部件
 
 	createjs.Sound.initializeDefaultPlugins();
@@ -183,7 +185,7 @@ function initLevel(level_count){
 	shadow.graphics.beginFill("#ce0000").drawRoundRect(540,1720,120,120,20);
 	backButton.x=600;backButton.y=1750;backButton.regX=backButton.regY=60;
 	backButton.graphics.beginFill("#FF0000").drawRoundRect(0,0,120,120,20);
-	backButton.on("click",function backFunction(){stage.removeChild(level);createjs.Ticker.removeAllEventListeners("tick");initLevelSelector();},null,true);
+	backButton.on("click",function backFunction(){if(gameend==false){stage.removeChild(level);createjs.Ticker.removeAllEventListeners("tick");initLevelSelector();}},null,true);
 	backButton.on("mouseover",inter2);backButton.on("mouseout",inter2);
 	initgamescence();
 	stage.update();
@@ -214,14 +216,15 @@ function initLevel(level_count){
 	}
 
 	function ans(event,data){
-		console.log("this is",color[data.count],"count is",color_count[data.count]);
-		if(color_count[data.count]==mostColor){console.log("this round is",round);right();}
-		else{if(score<1000){createjs.Sound.play("fail");score="FAIL";gameover()}else{score-=1000;createjs.Sound.play("wrong")};console.log("wrong");}
+		if(gameend==false){
+			if(color_count[data.count]==mostColor){right();}
+			else{if(score<1000){createjs.Sound.play("fail");score="FAIL";gameover()}else{score-=1000;createjs.Sound.play("wrong")};}
+		}
 	}
 
 	function right(){
 		if(round<10){createjs.Sound.play("right");round++;level.removeChild(gamescence);initgamescence();stage.update()}
-		else{createjs.Sound.play("end");gameover();console.log("game over")}
+		else{createjs.Sound.play("end");gameover();}
 	}
 
 	function score_count(event){
@@ -234,6 +237,7 @@ function initLevel(level_count){
 		stage.update();
 	}
 	function gameover(){
+		gameend=true;
 		var over=new createjs.Shape();
 		var final_score=new createjs.Text(score,"bold 200px FANTASY","#ff4040");
 		var final_button=new createjs.Shape();
