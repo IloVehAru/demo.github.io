@@ -1,5 +1,4 @@
 var stage;
-var button1;
 var scence1;
 var level;
 var color = ["#FF4040","#7EC0EE","#FFFF00","#CC6600","#EEAD0E","#EE82EE","#B23AEE","#00FF7F","#008B45"];
@@ -75,7 +74,7 @@ function initScence1(){  //初始化第一界面
 
 	
 	//初始化按钮1
-	button1 = new createjs.Shape();
+	var button1 = new createjs.Shape();
 	shadow.graphics.beginFill("#c90000").drawRoundRect(460,1500,280,280,40);
 	button1.graphics.beginFill("#EB0000").drawRoundRect(0,0,280,280,40);
 	button1.x = 600;button1.y = 1600;button1.regX = 140;button1.regY = 140;
@@ -164,12 +163,13 @@ function initLevel(level_count){
 	var round=1;
 	var gamescence;
 	var shadow=new createjs.Shape();
+	shadow.graphics.beginFill("#b2aeae").drawRoundRect(120,105,960,100,20);
 	shadow.graphics.beginFill("#cecece").drawRoundRect(120,80,960,100,20);
 	level.addChild(shadow);
 	var score_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
 	var round_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
-	round_title.x=700;round_title.y=90;
-	score_title.x=160;score_title.y=90;
+	round_title.x=640;round_title.y=95;
+	score_title.x=150;score_title.y=95;
 	
 	level.addChild(round_title);
 	level.addChild(score_title);
@@ -230,8 +230,8 @@ function initLevel(level_count){
 	function score_count(event){
 		if(score>0){
 		score--;
-		score_title.text="SCORE : "+score;
-		round_title.text="ROUND : "+round;
+		score_title.text="SCORE  "+score;
+		round_title.text="| ROUND  "+round;
 		}
 		else{createjs.Sound.play("fail");;gameover();}
 		stage.update();
@@ -278,8 +278,9 @@ function inter2(event){
 	// event.target.scaleX = (event.type == "mouseover") ? 1.2 : 1;
 	// event.target.scaleY = (event.type == "mouseover") ? 1.2 : 1;
 	if(event.type=="mouseover"){
-		createjs.Sound.play("sound");
+		
 		event.target.y+=20;
+		createjs.Sound.play("sound");
 	}
 	else if(event.type=="mouseout"){
 		event.target.y-=20;
