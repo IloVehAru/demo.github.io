@@ -4,6 +4,7 @@ var level;
 var color = ["#FF4040","#7EC0EE","#FFFF00","#CC6600","#EEAD0E","#EE82EE","#B23AEE","#00FF7F","#008B45"];
 var color_shadow=["#ec3d3d","#76b2db","#e3e305","#ac5600","#d29a0f","#d475d4","#a538db","#00e170","#005e2f"];
 var color_margin=["#008f78","#dc0062","#008449"];
+var isSound=true;
 
 function init(){ //初始化基本部件
 
@@ -34,11 +35,37 @@ function init(){ //初始化基本部件
 }
 
 function initScence1(){  //初始化第一界面
-	
+
 	scence1 = new createjs.Container();
 	stage.addChild(scence1);
+
 	var shadow=new createjs.Shape();
 	scence1.addChild(shadow);
+
+	var soundButton=new createjs.Shape();
+	scence1.addChild(soundButton);
+
+	shadow.graphics.beginFill("#c90000").drawRoundRect(120,1100,160,160,20);
+
+	soundButton.graphics.beginFill("#eb0000").drawRoundRect(120,1070,160,160,20);
+	soundButton.graphics.beginFill("#FFFFFF").moveTo(120+40,1070+70).lineTo(120+40,1070+90).lineTo(120+100,1070+125).lineTo(120+100,1070+35).closePath();
+	soundButton.on("mouseout",inter2);
+	soundButton.on("mouseover",inter2);
+	soundButton.on("click",switchSound);
+	soundButton.graphics.setStrokeStyle(15).beginStroke("#FFFFFF").moveTo(145,1100).lineTo(250,1200).endStroke();
+	function switchSound(){
+		isSound=!isSound;
+		if(isSound==true){
+				soundButton.graphics.setStrokeStyle(15).beginStroke("#FFFFFF").moveTo(145,1100).lineTo(250,1200).endStroke();
+		}
+		else{
+				soundButton.graphics.beginFill("#eb0000").drawRoundRect(120,1070,160,160,20);
+				soundButton.graphics.beginFill("#FFFFFF").moveTo(120+40,1070+70).lineTo(120+40,1070+90).lineTo(120+100,1070+125).lineTo(120+100,1070+35).closePath();
+		}
+
+		stage.update();
+	}
+
 	
 
 	var title=new Array();
@@ -52,22 +79,26 @@ function initScence1(){  //初始化第一界面
 
 	for(var j=0;j<5;j++){
 		for(var i=0;i<5;i++){
-			var k=Math.floor(Math.random()*5);
-			title[j][i]=new createjs.Text(title_str[j].charAt(i),"bold 120px IPPACT Verdana","#FFFFFF");
-			shadow.graphics.beginFill(color_shadow[k]).drawRoundRect(120+200*i,220+220*j,160,160,20);
-			if(title[j][i].text==" "){
-				icon.graphics.beginFill(color[k]).drawRoundRect(120+200*i,210+220*j,160,160,20);
+			if(j!=4||i!=0){
+				var k=Math.floor(Math.random()*5);
+				title[j][i]=new createjs.Text(title_str[j].charAt(i),"bold 120px IPPACT Verdana","#FFFFFF");
+				shadow.graphics.beginFill(color_shadow[k]).drawRoundRect(120+200*i,220+220*j,160,160,20);
+				if(title[j][i].text==" "){
+					icon.graphics.beginFill(color[k]).drawRoundRect(120+200*i,210+220*j,160,160,20);
+				}
+				else{
+					icon.graphics.beginFill(color[k]).drawRoundRect(120+200*i,190+220*j,160,160,20);
+				}
+				
+				title[j][i].regX=title[j][i].getBounds().width/2;
+				title[j][i].x=200+200*i;
+				title[j][i].y=190+220*j;
+				scence1.addChild(title[j][i]);
 			}
-			else{
-				icon.graphics.beginFill(color[k]).drawRoundRect(120+200*i,190+220*j,160,160,20);
-			}
-			
-			title[j][i].regX=title[j][i].getBounds().width/2;
-			title[j][i].x=200+200*i;
-			title[j][i].y=190+220*j;
-			scence1.addChild(title[j][i]);
 		}
 	}
+
+	
 
 
 	
@@ -162,8 +193,7 @@ function initLevel(level_count){
 	var round=1;
 	var gamescence;
 	var shadow=new createjs.Shape();
-	shadow.graphics.beginFill("#b2aeae").drawRoundRect(120,105,960,100,20);
-	shadow.graphics.beginFill("#cecece").drawRoundRect(120,80,960,100,20);
+	shadow.graphics.beginFill("#cecece").drawRoundRect(120,85,960,100,20);
 	level.addChild(shadow);
 	var score_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
 	var round_title=new createjs.Text("","bold 60px  Verdana","#FFFFFF");
@@ -217,13 +247,13 @@ function initLevel(level_count){
 	function ans(event,data){
 		if(gameend==false){
 			if(color_count[data.count]==mostColor){right();}
-			else{if(score<1000){createjs.Sound.play("fail");score="FAIL";gameover()}else{score-=1000;createjs.Sound.play("wrong")};}
+			else{if(score<1000){if(isSound==true){createjs.Sound.play("fail")};score="FAIL";gameover()}else{score-=1000;if(isSound==true){createjs.Sound.play("wrong")}};}
 		}
 	}
 
 	function right(){
-		if(round<10){createjs.Sound.play("right");round++;level.removeChild(gamescence);initgamescence();stage.update()}
-		else{createjs.Sound.play("end");gameover();}
+		if(round<10){if(isSound==true){createjs.Sound.play("right")};round++;level.removeChild(gamescence);initgamescence();stage.update()}
+		else{if(isSound==true){createjs.Sound.play("end")};gameover();}
 	}
 
 	function score_count(event){
@@ -232,7 +262,7 @@ function initLevel(level_count){
 		score_title.text="SCORE  "+score;
 		round_title.text="| ROUND  "+round;
 		}
-		else{createjs.Sound.play("fail");;gameover();}
+		else{if(isSound==true){createjs.Sound.play("fail")};;gameover();}
 		stage.update();
 	}
 	function gameover(){
@@ -265,7 +295,7 @@ function inter(event){
 	// event.target.scaleY = (event.type == "mouseover") ? 1.2 : 1;
 	if(event.type=="mouseover"){
 		event.target.y+=30;
-		createjs.Sound.play("sound");
+		if(isSound==true){createjs.Sound.play("sound")};
 	}
 	else if(event.type=="mouseout"){
 		event.target.y-=30;
@@ -278,7 +308,7 @@ function inter2(event){
 	// event.target.scaleY = (event.type == "mouseover") ? 1.2 : 1;
 	if(event.type=="mouseover"){
 		event.target.y+=20;
-		createjs.Sound.play("sound");
+		if(isSound==true){createjs.Sound.play("sound")};
 	}
 	else if(event.type=="mouseout"){
 		event.target.y-=20;
