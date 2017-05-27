@@ -72,7 +72,7 @@ function initScence1(){  //初始化第一界面
 	for(var i=0;i<5;i++){
 		title[i]=new Array();
 	}
-	var title_str=["WHICH","COLOR","IS   ","MOST ","    ?"];
+	var title_str=["WHICH","COLOR","ISTHE","MOST ","    ?"];
 	var icon=new createjs.Shape();
 	scence1.addChild(icon);
 
